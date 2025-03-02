@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int linearSearchWithSentinel(int arr[], int n, int target) {
+    int last = arr[n - 1];
+    arr[n - 1] = target; // Set the sentinel
+    int i = 0;
+    while (arr[i] != target) i++;
+    arr[n - 1] = last; // Restore the last element
+    return (i < n - 1 || arr[n - 1] == target) ? i : -1;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int target = 4;
+    cout << "Sentinel Search: Element found at index: " << linearSearchWithSentinel(arr, 5, target) << endl;
+    return 0;
+}
