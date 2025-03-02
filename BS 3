@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int lowerBound(int arr[], int n, int target) {
+    int left = 0, right = n;
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] < target) left = mid + 1;
+        else right = mid;
+    }
+    return left; // Index of the first element not less than target
+}
+
+int main() {
+    int arr[] = {1, 2, 2, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 2;
+    int result = lowerBound(arr, n, target);
+    cout << "Lower Bound: First position not less than " << target << " is at index: " << result << endl;
+    return 0;
+}
