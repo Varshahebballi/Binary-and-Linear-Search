@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int binarySearchLastOccurrence(int arr[], int n, int target) {
+    int left = 0, right = n - 1, result = -1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target) {
+            result = mid;  // Record occurrence
+            left = mid + 1;  // Search right
+        } else if (arr[mid] > target) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return result;
+}
+
+int main() {
+    int arr[] = {1, 2, 2, 2, 3, 4};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 2;
+    int result = binarySearchLastOccurrence(arr, n, target);
+    cout << "Last occurrence found at index: " << result << endl;
+    return 0;
+}
