@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int closestElement(int arr[], int n, int target) {
+    int left = 0, right = n - 1;
+    if (target <= arr[left]) return left;
+    if (target >= arr[right]) return right;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target) return mid;
+        if (arr[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
+    
+    // Check which of left or right is closer
+    if (abs(arr[left] - target) < abs(arr[right] - target)) return left;
+    return right;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5, 6};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 7;
+    int result = closestElement(arr, n, target);
+    cout << "Closest Element: Closest index to " << target << " is: " << result << endl;
+    return 0;
+}
