@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int upperBound(int arr[], int n, int target) {
+    int left = 0, right = n;
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] <= target) left = mid + 1;
+        else right = mid;
+    }
+    return left; // Index of the first element greater than target
+}
+
+int main() {
+    int arr[] = {1, 2, 2, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 2;
+    int result = upperBound(arr, n, target);
+    cout << "Upper Bound: First position greater than " << target << " is at index: " << result << endl;
+    return 0;
+}
+
+Output: Upper Bound: First position greater than 2 is at index: 3
+
